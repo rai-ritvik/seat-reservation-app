@@ -4,7 +4,7 @@
     --bg-panel-raised: #1D212A;
     --text-main: #F2EFE7;
     --text-dim: #B9B6AC;
-    --accent-gold: #E3A544;       
+    --accent-gold: #E3A544;
     --border-line: rgba(242, 239, 231, 0.09);
     --vip-color: #E3A544;
     --premium-color: #7EA0C4;
@@ -124,4 +124,52 @@ h1 em {
     font-size: 0.68rem;
     color: var(--text-dim);
     letter-spacing: 0.03em;
+}
+
+.stage-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 36px;
+    align-items: start;
+}
+
+.panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 22px;
+    padding: 28px;
+}
+
+.panel h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.panel p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.stage-curve {
+    margin: 10px auto 40px;
+    width: 85%;
+    max-width: 520px;
+    text-align: center;
+    font-size: 0.72rem;
+    letter-spacing: 0.28rem;
+    color: var(--text-dim);
+}
+
+.stage-curve::before {
+    content: "";
+    display: block;
+    height: 44px;
+    margin-bottom: 12px;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    border-top: 2px solid var(--accent-gold);
+    background: linear-gradient(180deg, rgba(227, 165, 68, 0.25), rgba(227, 165, 68, 0.02));
+    box-shadow: 0 0 35px 4px rgba(227, 165, 68, 0.15);
 }
