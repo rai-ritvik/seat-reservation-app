@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-    
+
     <div class="wrap">
         <header class="hero">
             <div class="hero-top">
                 <h1><em>Nightshade</em> Sessions</h1>
-                <div>
-                    <span>DATE</span>
-                    <span>VENUE</span>
-                    <span>TIME</span>
-                </div>
-            </div>
-            <div class="capacity-bar">
-                <div>
-                    <div>
-                        
+                <div class="hero-meta">
+                    <div class="meta-item">
+                        <span class="label">DATE</span>
+                        <span class="value" id="ev-date">Sat, 24 Oct 2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">VENUE</span>
+                        <span class="value" id="ev-venue">The Amber Room, Ghaziabad</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">TIME</span>
+                        <span class="value" id="ev-time">7:30 PM</span>
                     </div>
                 </div>
             </div>
+            <div class="capacity-bar">
+                <div class="cap-track">
+                    <div class="cap-fill" id="capFill"></div>
+                </div>
+                <div class="cap-stat">
+                    <span class="num" id="capTotal">60</span>
+                    <span class="label">CAPACITY</span>
+                </div>
+                <div class="cap-stat">
+                    <span class="num" id="capBooked">0</span>
+                    <span class="label">BOOKED</span>
+                </div>
+                <div class="cap-stat">
+                    <span class="num" id="capLeft">60</span>
+                    <span class="label">LEFT</span>
+                </div>
+            </div>
         </header>
+
+
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
