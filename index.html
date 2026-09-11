@@ -48,7 +48,50 @@
             </div>
         </header>
 
-
+        <main class="stage-layout">
+            <section class="panel" id="seat-panel">
+                <h2>Choose Your Seats</h2>
+                <p>Tap an open seat to hold it. Tap again to release.</p>
+                <div class="filters"></div>
+                <div class="stage-curve">STAGE</div>
+                <div class="seat-map" id="seatMap"></div>
+                <div class="legend"></div>
+            </section>
+            <aside class="sidebar">
+                <div class="panel">
+                    <h2>Booking Summary</h2>
+                    <p>Prices by category</p>
+                    <div class="price-list">
+                        <div>
+                            <span>VIP - Rows A-B</span>
+                            <span>Rs.500</span>
+                        </div>
+                        <div>
+                            <span>Premium - C-D</span>
+                            <span>Rs.300</span>
+                        </div>
+                        <div>
+                            <span>Regular - E-F</span>
+                            <span>Rs.150</span>
+                        </div>
+                    </div>
+                    <div id="seatSummary">
+                        <span class="empty-note">No seats selected yet</span>
+                    </div>
+                    <div class="total-row">
+                        <span class="label">Total Amount</span>
+                        <span class="amount">Rs.<span id="totalAmount">0</span></span>
+                    </div>
+                    <button id="confirmBtn" class="btn-confirm" disabled>Confirm Booking</button>
+                    <button id="clearBtn" class="btn-clear">Clear Selection</button>
+                </div>
+                <div class="panel">
+                    <h2>My Bookings</h2>
+                    <p>Your confirmed and cancelled orders</p>
+                    <div id="bookingList"></div>
+                </div>
+            </aside>
+        </main>
     </div>
 
     <script src="script.js"></script>
