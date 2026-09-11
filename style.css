@@ -83,3 +83,45 @@ h1 em {
     font-size: 1.28rem;
     font-weight: 500;
 }
+
+.capacity-bar {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    gap: 22px;
+    background: var(--bg-panel);
+    border-radius: 22px;
+    padding: 18px 26px;
+}
+
+.cap-track {
+    height: 8px;
+    background: rgba(242, 239, 231, 0.08);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.cap-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-gold), #c98b2e);
+    border-radius: 99px;
+    transition: width 0.5s ease;
+}
+
+.cap-stat {
+    text-align: center;
+}
+
+.cap-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    display: block;
+    line-height: 1;
+}
+
+.cap-stat .label {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.03em;
+}
