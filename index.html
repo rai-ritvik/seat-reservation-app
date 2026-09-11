@@ -57,7 +57,19 @@
             <section class="panel" id="seat-panel">
                 <h2>Choose Your Seats</h2>
                 <p>Tap an open seat to hold it. Tap again to release.</p>
-                <div class="filters"></div>
+                <div class="filters">
+                    <div class="filter-group" id="categoryFilters">
+                        <button class="filter-btn active" data-filter-cat="all">All</button>
+                        <button class="filter-btn" data-filter-cat="vip">VIP</button>
+                        <button class="filter-btn" data-filter-cat="premium">Premium</button>
+                        <button class="filter-btn" data-filter-cat="regular">Regular</button>
+                    </div>
+                    <div class="filter-group" id="availFilters">
+                        <button class="filter-btn active" data-filter-avail="all">All seats</button>
+                        <button class="filter-btn" data-filter-avail="available">Available</button>
+                        <button class="filter-btn" data-filter-avail="booked">Booked</button>
+                    </div>
+                </div>
                 <div class="stage-curve">STAGE</div>
                 <div class="seat-map" id="seatMap"></div>
                 <div class="legend"></div>
