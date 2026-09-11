@@ -173,3 +173,43 @@ h1 em {
     background: linear-gradient(180deg, rgba(227, 165, 68, 0.25), rgba(227, 165, 68, 0.02));
     box-shadow: 0 0 35px 4px rgba(227, 165, 68, 0.15);
 }
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    position: sticky;
+    top: 24px;
+}
+
+.price-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    padding: 10px 14px;
+    background: var(--bg-panel-raised);
+    border-radius: 6px;
+    border-left: 3px solid var(--regular-color);
+}
+
+.price-row.vip {
+    border-left-color: var(--vip-color);
+}
+.price-row.premium {
+    border-left-color: var(--premium-color);
+}
+.price-row.regular {
+    border-left-color: var(--regular-color);}
+
+.price-row span:last-child {
+    color: var(--accent-gold);
+    font-weight: 700;
+}
