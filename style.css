@@ -203,11 +203,14 @@ h1 em {
 .price-row.vip {
     border-left-color: var(--vip-color);
 }
+
 .price-row.premium {
     border-left-color: var(--premium-color);
 }
+
 .price-row.regular {
-    border-left-color: var(--regular-color);}
+    border-left-color: var(--regular-color);
+}
 
 .price-row span:last-child {
     color: var(--accent-gold);
@@ -296,7 +299,7 @@ h1 em {
     gap: 6px;
     background: var(--bg-panel-raised);
     padding: 5px;
-    border-radius: 999px; 
+    border-radius: 999px;
     border: 1px solid var(--border-line);
 }
 
@@ -320,4 +323,93 @@ h1 em {
 .filter-btn.active {
     background: var(--accent-gold);
     color: #1A1300;
+}
+
+.legend {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 38px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-line);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.legend-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px 5px 2px 2px;
+    border: 1.5px solid var(--regular-color);
+    background: var(--bg-panel-raised);
+}
+
+.legend-swatch.selected {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+.legend-swatch.booked {
+    background: rgba(122, 59, 68, 0.35);
+    border-color: var(--booked-color);
+}
+
+.legend-swatch.vip {
+    border-color: var(--vip-color);
+}
+
+.legend-swatch.premium {
+    border-color: var(--premium-color);
+}
+
+.legend-swatch.regular {
+    border-color: var(--regular-color);
+}
+
+.seat.cat-vip {
+    border-color: var(--vip-color);
+}
+
+.seat.cat-premium {
+    border-color: var(--premium-color);
+}
+
+.seat.cat-regular {
+    border-color: var(--regular-color);
+}
+
+.seat:hover:not(.booked) {
+    transform: translateY(calc(var(--arc) - 3px));
+    background: rgba(242, 239, 231, 0.08);
+}
+
+.seat.selected {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+    box-shadow: 0 4px 14px rgba(227, 165, 68, 0.35);
+}
+
+.seat.selected::after {
+    color: #1A1300;
+}
+
+.seat.booked {
+    background: rgba(122, 59, 68, 0.35);
+    border-color: var(--booked-color);
+    cursor: not-allowed;
+}
+
+.seat.booked::after {
+    color: #c98d93;
+}
+
+.seat.dimmed {
+    opacity: 0.18;
+    pointer-events: none;
 }
