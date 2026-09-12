@@ -93,10 +93,56 @@ function renderSeatMap() {
             btn.style.setProperty("--arc", arcOffset(idx) + "px");
             btn.dataset.num = seat.number;
             btn.dataset.id = seat.id;
+            if (seat.status === "booked") btn.classList.add("booked");
+            if (selectedIds.includes(seat.id)) btn.classList.add("selected");
             rowEl.appendChild(btn);
         });
         map.appendChild(rowEl);
     });
 }
+
+
+document.getElementById("seatMap").addEventListener("click", function (event) {
+    const clickedElement = event.target;
+    if (!clickedElement.classList.contains("seat")) return;
+    const seatId = clickedElement.dataset.id;
+    const seatData = seats.find(s => s.id === seatId);
+    if (seatData.status === "booked") return;
+    const indexInSelected = selectedIds.indexOf(seatId);
+    if (indexInSelected > -1) {
+        selectedIds.splice(indexInSelected, 1);
+    }
+    else {
+        selectedIds.push(seatId);
+    }
+    renderSeatMap();
+    updateSummary();
+});
+
+function updateSummary() {
+    const summaryContainer = document.getElementById("seatSummary");
+    const totalAmountEl = document.querySelector(".total-row .amount");
+    const confirmBtn = document.querySelector(".btn-confirm");
+    summaryContainer.innerHTML = "";
+    if (selectedIds.length === 0) {
+        summaryContainer.innerHTML = '<span class="empty-note">No seats selected yet.</span>';
+        totalAmountEl.textContent = "Rs.0";
+        confirmBtn.disabled = true;
+        return;
+    }
+    let totalPrice = 0;
+    selectedIds.forEach(id => {
+        const seat = seats.find(s => s.id === id);
+        totalPrice += seat.price;
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = id;
+        summaryContainer.appendChild(chip);
+    });
+    totalAmountEl.textContent = "Rs." + totalPrice;
+    confirmBtn.disabled = false;
+}
+
 loadState();
 renderSeatMap();
+updateSummary();
