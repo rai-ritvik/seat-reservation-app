@@ -44,3 +44,29 @@ function buildDefaultSeats() {
     });
     return arr;
 }
+
+function loadState() {
+    try {
+        const rawSeats = localStorage.getItem(STORAGE_SEATS);
+        seats = rawSeats ? JSON.parse(rawSeats) : buildDefaultSeats;
+    }
+    catch (error) {
+        seats = buildDefaultSeats;
+    }
+
+    try {
+        const rawBookings = localStorage.getItem(STORAGE_BOOKINGS);
+        bookings = rawBookings ? JSON.parse(rawBookings) : [];
+    }
+    catch (error) {
+        bookings = [];
+    }
+}
+
+function saveSeats() {
+    localStorage.setItem(STORAGE_SEATS, JSON.stringify(seats));
+}
+
+function saveBookings() {
+    localStorage.setItem(STORAGE_BOOKINGS, JSON.stringify(bookings));
+}
