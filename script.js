@@ -143,6 +143,84 @@ function updateSummary() {
     confirmBtn.disabled = false;
 }
 
+document.querySelector(".btn-clear").addEventListener("click", function () {
+    selectedIds = [];
+    renderSeatMap();
+    updateSummary();
+});
+
+document.querySelector(".btn-confirm").addEventListener("click", function () {
+    if (selectedIds.length === 0) return;
+    let totalCost = 0;
+    selectedIds.forEach(id => {
+        const seat = seats.find(s => s.id === id);
+        totalCost += seat.price;
+        seat.status = "booked";
+    });
+    const newBooking = {
+        id: "TXN-" + Date.now(),
+        date: new Date().toLocaleString(),
+        seats: [...selectedIds],
+        total: totalCost,
+        status: "confirmed"
+    };
+    bookings.push(newBooking);
+    saveSeats();
+    saveBookings();
+    selectedIds = [];
+    renderSeatMap();
+    updateSummary();
+    renderBookings();
+});
+
+function renderBookings() {
+    const list = document.getElementById("bookingsList");
+    list.innerHTML = "";
+    if (bookings.length === 0) {
+        list.innerHTML = '<div class="no-bookings">No past bookings found.</div>';
+        return;
+    }
+    [...bookings].reverse().forEach(bkg => {
+        const card = document.createElement("div");
+        card.className = "booking-card";
+        const pillClass = bkg.status === "confirmed" ? "confirmed" : "cancelled";
+        card.innerHTML = `
+            <div class="booking-top">
+                <span class="booking-id">${bkg.id}</span>
+                <span class="status-pill ${pillClass}">${bkg.status}</span>
+            </div>
+            <div class="booking-seats">
+                Seats: <strong>${bkg.seats.join(", ")}</strong>
+            </div>
+            <div class="booking-bottom">
+                <span class="booking-total">Rs.${bkg.total}</span>${bkg.status === "confirmed" ? `<button class="btn-cancel" data-id="${bkg.id}">Cancel</button>` : ""}
+            </div>
+        `;
+
+        list.appendChild(card);
+    });
+}
+
+document.getElementById("bookingsList").addEventListener("click", function (event) {
+    const clickedBtn = event.target;
+    if (!clickedBtn.classList.contains("btn-cancel")) return;
+    const txnId = clickedBtn.dataset.id;
+    const bkgData = bookings.find(b => b.id === txnId);
+    if (!bkgData) return;
+    bkgData.status = "cancelled";
+    bkgData.seats.forEach(seatId => {
+        const seatToFree = seats.find(s => s.id === seatId);
+        if (seatToFree) {
+            seatToFree.status = "available";
+        }
+    });
+    saveSeats();
+    saveBookings();
+    renderSeatMap();
+    renderBookings();
+});
+
 loadState();
 renderSeatMap();
 updateSummary();
+renderBookings();
