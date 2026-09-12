@@ -48,10 +48,10 @@ function buildDefaultSeats() {
 function loadState() {
     try {
         const rawSeats = localStorage.getItem(STORAGE_SEATS);
-        seats = rawSeats ? JSON.parse(rawSeats) : buildDefaultSeats;
+        seats = rawSeats ? JSON.parse(rawSeats) : buildDefaultSeats();
     }
     catch (error) {
-        seats = buildDefaultSeats;
+        seats = buildDefaultSeats();
     }
 
     try {
@@ -70,3 +70,33 @@ function saveSeats() {
 function saveBookings() {
     localStorage.setItem(STORAGE_BOOKINGS, JSON.stringify(bookings));
 }
+
+function arcOffset(index) {
+    const center = (SEATS_PER_ROW - 1) / 2;
+    const dist = Math.abs(index - center);
+    return Math.round(dist * dist * 1.6);
+}
+
+function renderSeatMap() {
+    const map = document.getElementById("seatMap");
+    map.innerHTML = "";
+    ROWS.forEach(row => {
+        const rowEl = document.createElement("div");
+        rowEl.className = "seat-row";
+        const tag = document.createElement("div");
+        tag.className = "row-tag";
+        tag.textContent = row;
+        rowEl.appendChild(tag);
+        seats.filter(s => s.row === row).forEach((seat, idx) => {
+            const btn = document.createElement("button");
+            btn.className = "seat cat-" + seat.category;
+            btn.style.setProperty("--arc", arcOffset(idx) + "px");
+            btn.dataset.num = seat.number;
+            btn.dataset.id = seat.id;
+            rowEl.appendChild(btn);
+        });
+        map.appendChild(rowEl);
+    });
+}
+loadState();
+renderSeatMap();
