@@ -95,6 +95,15 @@ function renderSeatMap() {
             btn.dataset.id = seat.id;
             if (seat.status === "booked") btn.classList.add("booked");
             if (selectedIds.includes(seat.id)) btn.classList.add("selected");
+            let isDimmed = false;
+            if (activeCatFilter !== "all" && seat.category !== activeCatFilter) {
+                isDimmed = true;
+            }
+            if (activeAvailFilter !== "all") {
+                if (activeAvailFilter === "available" && seat.status === "booked") isDimmed = true;
+                if (activeAvailFilter === "booked" && seat.status === "available") isDimmed = true;
+            }
+            if (isDimmed) btn.classList.add("dimmed");
             rowEl.appendChild(btn);
         });
         map.appendChild(rowEl);
@@ -218,6 +227,25 @@ document.getElementById("bookingsList").addEventListener("click", function (even
     saveBookings();
     renderSeatMap();
     renderBookings();
+});
+
+document.getElementById("categoryFilters").addEventListener("click", function (event) {
+    if (event.target.tagName !== "BUTTON") return;
+    document.querySelectorAll("#categoryFilters .filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+    event.target.classList.add("active");
+    activeCatFilter = event.target.dataset.filterCat;
+    renderSeatMap();
+});
+document.getElementById("availFilters").addEventListener("click", function (event) {
+    if (event.target.tagName !== "BUTTON") return;
+    document.querySelectorAll("#availFilters .filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+    event.target.classList.add("active");
+    activeAvailFilter = event.target.dataset.filterAvail;
+    renderSeatMap();
 });
 
 loadState();
