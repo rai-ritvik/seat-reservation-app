@@ -180,6 +180,7 @@ document.querySelector(".btn-confirm").addEventListener("click", function () {
     renderSeatMap();
     updateSummary();
     renderBookings();
+    updateCapacityBar();
 });
 
 function renderBookings() {
@@ -227,6 +228,7 @@ document.getElementById("bookingsList").addEventListener("click", function (even
     saveBookings();
     renderSeatMap();
     renderBookings();
+    updateCapacityBar();
 });
 
 document.getElementById("categoryFilters").addEventListener("click", function (event) {
@@ -248,7 +250,19 @@ document.getElementById("availFilters").addEventListener("click", function (even
     renderSeatMap();
 });
 
+function updateCapacityBar() {
+    const totalSeats = seats.length;
+    const bookedSeats = seats.filter(s => s.status === "booked").length;
+    const availableSeats = totalSeats - bookedSeats;
+    const fillPercentage = (bookedSeats / totalSeats) * 100;
+    document.getElementById("countTotal").textContent = totalSeats;
+    document.getElementById("countBooked").textContent = bookedSeats;
+    document.getElementById("countAvailable").textContent = availableSeats;
+    document.getElementById("barFill").style.width = fillPercentage + "%";
+}
+
 loadState();
 renderSeatMap();
 updateSummary();
 renderBookings();
+updateCapacityBar();
