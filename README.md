@@ -1,5 +1,7 @@
 # 🎟️ Nightshade Sessions — Event Seat Booking System
 
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://seat-reservation-app-brown.vercel.app/)
+
 ## 📌 About the Project
 An interactive, browser-based seat booking system built for a live event venue. It handles a full 60-seat theater layout, category-based pricing, and complete booking lifecycle management — select, confirm, cancel — entirely on the client side, with no backend or database. All state is persisted through `localStorage`, so booked seats and booking history survive a page refresh.
 
