@@ -1,25 +1,40 @@
-# 🎟️ Event Seat Booking System
+# 🎟️ Nightshade Sessions — Event Seat Booking System
 
 ## 📌 About the Project
-This project is an interactive, browser-based Event Seat Booking System. Built as a practical frontend challenge, it handles dynamic UI rendering, state management, and data persistence without relying on a backend database. Users can view a 60-seat layout, select seats based on different pricing categories, and manage their bookings.
+An interactive, browser-based seat booking system built for a live event venue. It handles a full 60-seat theater layout, category-based pricing, and complete booking lifecycle management — select, confirm, cancel — entirely on the client side, with no backend or database. All state is persisted through `localStorage`, so booked seats and booking history survive a page refresh.
+
+The UI leans into the theater setting itself: seats are arranged in a genuine curved arc around a stage, rather than a flat grid, so the layout doubles as a small piece of visual storytelling for the brief.
 
 ## ✨ Features
-* **Dynamic Seat Layout:** An interactive grid of 60 seats with real-time visual states (Available, Selected, Booked).
-* **Category-Based Pricing:** Seats are divided into VIP (₹500), Premium (₹300), and Regular (₹150) tiers.
-* **Real-Time Cart Calculation:** Automatically calculates and displays the total amount based on the selected seats.
-* **Data Persistence:** Utilizes browser `localStorage` to ensure booked seats and booking details remain saved even after a page refresh.
-* **Booking Management:** Includes a "My Bookings" section to view previous reservations and an option to cancel bookings, instantly freeing up the seat.
-* **Smart Filtering & Capacity:** Users can filter seats by category and availability, while a dynamic counter tracks booked and remaining seats.
+* **Curved Seat Layout:** 60 seats across 6 rows (A–F), arranged in an arc that bows away from the stage — not just a plain grid.
+* **Three Live Seat States:** Available, Selected, and Booked, each with a distinct visual treatment plus a legend.
+* **Category-Based Pricing:** VIP — ₹500 (Rows A–B), Premium — ₹300 (Rows C–D), Regular — ₹150 (Rows E–F).
+* **Real-Time Booking Summary:** Selected seats and the running total update instantly as seats are tapped.
+* **Data Persistence:** `localStorage` keeps booked seats and booking history intact across refreshes.
+* **My Bookings:** A running history of every booking with its status, seats, and total amount.
+* **Cancellation:** Cancel any confirmed booking to instantly free its seats back to Available.
+* **Filtering:** Filter the seat map by category (VIP / Premium / Regular) and by availability (Available / Booked).
+* **Live Capacity Tracking:** Booked and remaining seat counts update dynamically as bookings are made or cancelled.
+* **Responsive Layout:** Seat map and sidebar stack cleanly on tablet and mobile screens.
 
 ## 🛠️ Tech Stack
-* **HTML5:** Semantic structure and layout.
-* **CSS3:** Custom grid layout, interactive hover states, and responsive design.
-* **JavaScript:** Core logic, DOM manipulation, and state management.
+* **HTML5** — Semantic structure and layout.
+* **CSS3** — Custom grid/flex layout, curved seat positioning, hover and selection states, responsive breakpoints.
+* **JavaScript (ES6+)** — Core logic, DOM manipulation, event delegation, and state management.
+
+No frameworks, build tools, or dependencies beyond two Google Fonts loaded via CDN (Fraunces + Manrope).
 
 ## 🧠 Key Concepts Demonstrated
-* DOM Manipulation & Event Handling
+* DOM Manipulation & Event Handling (including event delegation)
 * Array & Object Data Structures
-* Array Methods (`.filter()`, `.map()`, `.forEach()`, `.reduce()`)
+* Array Methods (`.filter()`, `.map()`, `.forEach()`, `.find()`, `.reduce()`)
 * JSON Parsing & Stringification
 * LocalStorage API
-* Conditional Logic & Real-time Calculations
+* Conditional Logic & Real-Time Calculations
+
+## 📂 Project Structure
+```
+├── index.html      # Markup and page structure
+├── style.css        # Layout, seat states, theming, responsive rules
+├── script.js         # Seat data, booking logic, localStorage persistence
+└── README.md
