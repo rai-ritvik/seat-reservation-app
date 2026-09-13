@@ -88,6 +88,7 @@ h1 em {
     display: grid;
     grid-template-columns: auto 1fr auto auto;
     align-items: center;
+    margin-top: 30px;
     gap: 22px;
     background: var(--bg-panel);
     border-radius: 22px;
